@@ -17,11 +17,13 @@ st.warning(DISCLAIMER)
 st.markdown("---")
 
 # ── API Key ──────────────────────────────────────────────────
-api_key = st.sidebar.text_input(
-    "Enter your Anthropic API Key",
-    type="password",
-    help="Get your key at console.anthropic.com"
-)
+api_key = st.secrets.get("ANTHROPIC_API_KEY", None)
+if not api_key:
+    api_key = st.sidebar.text_input(
+        "Enter your Anthropic API Key",
+        type="password",
+        help="Get your key at console.anthropic.com"
+    )
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### About ReadmitRadar")
